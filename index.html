@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | Product list with cart</title>
+  <style>
+   
+    </style>
+</head>
+<body>
+  <div class="body">
+    <h2 class="title">Desserts</h2>
+  <div class="contanir">
+     <div class="box">
+      <div class="img">
+        <img src="assets/images/image-waffle-desktop.jpg">
+      </div>
+      <div class="button">
+        <button>
+         <i class="fa-solid fa-cart-shopping"></i>
+          Add to crad</button>
+      </div>
+      <h2> Waffle</h2>
+      <h3>Waffle with Berries</h3>
+      <p>$6.50</p>
+     </div>
+     <div class="box">
+      <div class="img">
+        <img src="assets/images/image-tiramisu-desktop.jpg">
+      </div>
+      <div class="button">
+        <button>
+          <i class="fa-solid fa-cart-shopping"></i>
+          Add to crad</button>
+      </div>
+      <h2> Crème Brûlée</h2>
+      <h3>Vanilla Bean Crème Brûlé</h3>
+      <p> $7.00</p>
+     </div>
+     <div class="box">
+      <div class="img">
+        <img src="assets/images/image-panna-cotta-desktop.jpg">
+      </div>
+      <div class="button">
+        <button>
+          <i class="fa-solid fa-cart-shopping"></i>
+          Add to crad</button>
+      </div>
+      <h2> Macaron</h2>
+      <h3>Macaron Mix of Five</h3>
+      <p>$8.00</p>
+     </div>
+     <div class="box">
+      <div class="img">
+        <img src="assets/images/image-meringue-desktop.jpg">
+      </div>
+      <div class="button">
+        <button>
+         <i class="fa-solid fa-cart-shopping"></i>
+          Add to crad</button>
+      </div>
+      <h2>Tiramisu</h2>
+      <h3> Classic Tiramisu</h3>
+      <p>$5.50</p>
+     </div>
+     <div class="box">
+      <div class="img">
+        <img src="assets/images/image-macaron-desktop.jpg">
+      </div>
+      <div class="button">
+        <button>
+          <i class="fa-solid fa-cart-shopping"></i>
+          Add to crad</button>
+        </div>
+      <h2>Baklava</h2>
+      <h3> Pistachio Baklava</h3>
+      <p>$4.00</p>
+     </div>
+     <div class="box">
+      <div class="img">
+        <img src="assets/images/image-creme-brulee-desktop.jpg">
+      </div>
+      <div class="button">
+        <button>
+          <i class="fa-solid fa-cart-shopping"></i>
+          Add to crad</button>
+      </div>
+      <h2> Pie</h2>
+      <h3>Lemon Meringue Pie</h3>
+      <p>$5.00</p>
+     </div>
+     <div class="box">
+      <div class="img">
+        <img src="assets/images/image-cake-desktop.jpg">
+      </div>
+      <div class="button">
+        <button>
+          <i class="fa-solid fa-cart-shopping"></i>
+          Add to crad</button>
+      </div>
+      <h2>Cake</h2>
+      <h3>Red Velvet Cake</h3>
+      <p> $ 4.50</p>
+     </div>
+     <div class="box">
+      <div class="img">
+        <img src="assets/images/image-brownie-desktop.jpg">
+      </div>
+      <div class="button">
+        <button>
+          <i class="fa-solid fa-cart-shopping"></i>
+          Add to crad</button>
+      </div>
+      <h2> Brownie</h2>
+      <h3>Salted Caramel Brownie</h3>
+      <p>$4.50</p>
+     </div>
+     <div class="box">
+      <div class="img">
+        <img src="assets/images/image-baklava-desktop.jpg">
+      </div>
+      <div class="button">
+        <button>
+          <i class="fa-solid fa-cart-shopping"></i>
+          Add to crad</button>
+      </div>
+      <h2>Panna Cotta</h2>
+      <h3>Vanilla Panna Cotta</h3>
+      <p> $6.50</p>
+     </div>
+  </div>
+</div>
+  <div class="main">
+    <div class="box-main">
+      <h1>Your Cart(0)</h1>
+      <h2> Your added items will appear here</h2>
+    </div>
+    <div id="total-price">
+      <h3>Total: $0.00</h3> <!-- المجموع -->
+    </div>
+    <button id="confirm-order">Confirm Order</button> <!-- زر تأكيد الطلب -->
+  </div>
+  </div>
+  <script>
+  let buttons = document.querySelectorAll(".button button"); // الحصول على الأزرار
+    let cartContainer = document.querySelector(".box-main"); // السلة
+    let totalPrice = 0; // متغير لتخزين المجموع
+
+    // تحديث إجمالي السعر
+    const updateTotal = () => {
+      document.getElementById("total-price").innerHTML = `<h3>Total: $${totalPrice.toFixed(2)}</h3>`;
+    };
+
+    // لكل زر في الأزرار، إضافة حدث عند النقر
+    buttons.forEach(button => {
+      button.addEventListener("click", function() {
+        let productName = this.closest('.box').querySelector('h2').textContent;
+        let productPrice = parseFloat(this.closest('.box').querySelector('p').textContent.replace('$', ''));
+
+        // إضافة السعر إلى المجموع الإجمالي
+        totalPrice += productPrice;
+        updateTotal();
+
+        // إنشاء عنصر جديد لعرض اسم المنتج والسعر في السلة
+        let item = document.createElement("p");
+        item.textContent = `${productName} - $${productPrice.toFixed(2)}`; // عرض اسم المنتج مع السعر
+
+        // إنشاء زر الحذف مع علامة "غلط"
+        let deleteButton = document.createElement("button");
+        deleteButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+        deleteButton.style.marginLeft = "10px"; 
+        deleteButton.style.cursor = "pointer"; 
+
+        // إضافة حدث الحذف مع نافذة تأكيد
+        deleteButton.addEventListener("click", function() {
+          if (confirm("Are you sure you want to remove this item from the cart?")) {
+            totalPrice -= productPrice; // خصم السعر من المجموع
+            updateTotal();
+            cartContainer.removeChild(item); // حذف العنصر من السلة
+          }
+        });
+
+        // إضافة زر الحذف إلى العنصر الجديد
+        item.append(deleteButton);
+
+        // إضافة العنصر إلى السلة
+        cartContainer.append(item); 
+      });
+    });
+
+    // إضافة حدث زر تأكيد الطلب
+    document.getElementById("confirm-order").addEventListener("click", function() {
+      if (totalPrice > 0) {
+        alert(`Your order has been confirmed. Total price: $${totalPrice.toFixed(2)}`);
+      } else {
+        alert("Your cart is empty. Please add items to the cart before confirming.");
+      }
+    });
+    
+  </script>
+</body>
+</html>
